@@ -27,9 +27,16 @@ public class LoanCalc {
 
 	// Computes the ending balance of a loan, given the loan amount, the periodical
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
-	private static double endBalance(double loan, double rate, int n, double payment) {	
-		// Replace the following statement with your code
-		return 0;
+	private static double endBalance(double loan, double rate, int n, double payment)
+	 {	
+		double newloan=loan;
+		rate=(rate/100)+1;
+		for(int i=0; i<n; i++)
+		{
+			newloan-=payment;
+			newloan*=rate;
+		}
+		return newloan;
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
@@ -37,9 +44,18 @@ public class LoanCalc {
 	// Given: the sum of the loan, the periodical interest rate (as a percentage),
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
-    public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		// Replace the following statement with your code
-		return 0;
+    public static double bruteForceSolver(double loan, double rate, int n, double epsilon) 
+	{
+	    iterationCounter=0;
+		double g=loan/n;
+		double newsum=(endBalance(loan, rate, n, g));
+		while(Math.abs(newsum)>=epsilon)
+		{
+			iterationCounter++;
+			g+=epsilon;
+			newsum=(endBalance(loan, rate, n, g));
+		}
+		return g;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -47,8 +63,27 @@ public class LoanCalc {
 	// Given: the sum of the loan, the periodical interest rate (as a percentage),
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
-    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-        // Replace the following statement with your code
-		return 0;
+    public static double bisectionSolver(double loan, double rate, int n, double epsilon)
+	 {  
+		double p=bruteForceSolver(loan, rate, n, epsilon)-10;
+		iterationCounter=0;
+		double l=endBalance(loan, rate, n, loan/n);
+	    double h=endBalance(loan, rate, n, p);
+		double g=(h+l)/2.0;
+		while((l-h)>epsilon)
+		{
+			if(endBalance(loan, rate, n, g)*l>0)
+			{
+				l=g;
+				g=(h+l)/2.0;
+			}
+			else
+			{
+				h=g;
+				g=(h+l)/2.0;
+				iterationCounter++;
+			}
+		}
+		return g;
     }
 }

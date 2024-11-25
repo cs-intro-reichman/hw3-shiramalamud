@@ -17,51 +17,111 @@ public class Algebra {
    		System.out.println(div(5,5));    // 5 / 5  
    		System.out.println(div(25,7));   // 25 / 7
    		System.out.println(mod(25,7));   // 25 % 7
-   		System.out.println(mod(120,6));  // 120 % 6    
+   		System.out.println(mod(120,6));  // 120 % 6   
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123));
 	}  
 
 	// Returns x1 + x2
-	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	public static int plus(int x1, int x2) 
+	{
+		for(int i=1; i<=x2;i++)
+		{
+			x1++;
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
-	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	public static int minus(int x1, int x2) 
+	{
+		for(int i=1; i<=x2; i++)
+		{
+			x1--;
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
-	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	public static int times(int x1, int x2) 
+	{
+		int sum=0;
+		for(int i = 0; i< x1; i++)
+		 {
+			for(int j=0; j < x2; j++) 
+			{
+				sum++;
+			}
+			
+		}
+		return sum;
+
 	}
 
 	// Returns x^n (for n >= 0)
-	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+	public static int pow(int x, int n) 
+	{
+		int sum=1;
+		for(int i=0; i<n; i++)
+		{
+			sum=times(sum, x);
+		}
+		return sum;
 	}
 
 	// Returns the integer part of x1 / x2 
-	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	public static int div(int x1, int x2)
+	 {
+		int count=0,n=x1;
+		do 
+		{
+		   count++;
+		   n=minus(n, x2);
+		}
+		while(n>=x2);
+
+		return count;
+	    
 	}
 
 	// Returns x1 % x2
-	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	public static int mod(int x1, int x2)
+	 {
+		int count=0;
+		int n=x1;
+		while(n>=x2)
+		{
+			n=minus(n, x2);
+		}
+		while(n<x1&&n>0)
+		{
+			count++;
+			n--;
+		}
+		return count;
 	}	
 
 	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+	public static int sqrt(int x) 
+	{
+		int sq=0;
+		if(x==1)
+		{
+			sq=1;
+		}
+		for(int i=1;i<x;i++)
+		{
+			if(pow(i,2)==x)
+			{
+				sq=i;
+			}
+			if(x-pow(i, 2)<0)
+			{
+				sq=minus(i, 1);
+				break;
+			}
+		}
+		return sq;
 	}	  	  
 }

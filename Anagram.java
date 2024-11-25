@@ -1,12 +1,15 @@
 /** Functions for checking if a given string is an anagram. */
-public class Anagram {
-	public static void main(String args[]) {
+public class Anagram 
+{
+	public static void main(String args[])
+	 {
 		// Tests the isAnagram function.
 		System.out.println(isAnagram("silent","listen"));  // true
 		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
 
+		
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
 		
@@ -23,27 +26,129 @@ public class Anagram {
 			pass = pass && isAnagram(str, randomAnagram);
 			if (!pass) break;
 		}
+
+
+
 		System.out.println(pass ? "test passed" : "test Failed");
 	}  
 
 	// Returns true if the two given strings are anagrams, false otherwise.
-	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
+	public static boolean isAnagram(String str1, String str2) 
+	{
+		int count=0;
+		str1=preProcess(str1);
+		str2=preProcess(str2);
+		if(str1.length()!=str2.length())
+		{
+			return false;
+		}
+		for(int i=0; i<str1.length(); i++)
+		{
+			for(int j=0; j<str2.length(); j++)
+			{
+					if(str1.charAt(i)==str2.charAt(j))
+				    {
+						str2=changestr(str2,str2.charAt(j));
+						count++;
+			    	}
+				
+			}
+
+		}
+		if(count==str1.length())
+		{
+			return true;
+		}
 		return false;
 	}
+
+	//returns the number of the char in strןng
+	public static int countChar(String str, char ch)
+	 {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) 
+		{
+            if (str.charAt(i) == ch)
+			 {
+                count++;
+             }
+        }
+        return count;
+    }
+
+    //returns The number of times char appears in string
+	public static String changestr(String str2, char c) 
+	{
+		String n = "";
+		boolean r = false;  
+		for (int i = 0; i < str2.length(); i++) 
+		{
+			if (str2.charAt(i) == c && !r)
+			 {
+				 n += "0";  
+				 r = true;  
+			 } 
+			 else 
+			 {
+				 n += str2.charAt(i);  
+			 }
+		}
+		return n;
+	}
+
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
-	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+	public static String preProcess(String str)
+	 {
+		String str2="";
+		for(int i=0; i<str.length(); i++)
+		{
+			if(((str.charAt(i)>='a'&& str.charAt(i)<='z'))||((str.charAt(i)>='A')&&(str.charAt(i)<='Z')))
+			{
+				str2+=str.charAt(i);
+			}
+		}
+		String str2new="";
+		for(int j=0; j<str2.length(); j++)
+		{
+			char ch=str2.charAt(j);
+			if(ch>='A'&&ch<='Z')
+			{
+				str2new+=(char)(ch+32);
+			}
+			else
+			{
+				str2new+=ch;
+			}
+
+		}
+		return str2new;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
-	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+	public static String randomAnagram(String str) 
+	{
+		String newstr="";
+		String delete="";
+		int l=str.length();
+		for(int i=0; i<l; i++)
+		{
+			int random=(int)(Math.random()*str.length());
+			newstr+=str.charAt(random);
+			for(int j=0; j<str.length(); j++)
+			{
+				if(str.charAt(j)!=str.charAt(random))
+				{
+					delete+=str.charAt(j);
+				}
+			}
+			str=delete;
+			delete="";
+
+		}
+		return newstr;
 	}
 }
