@@ -131,14 +131,17 @@ public class Anagram
 	public static String randomAnagram(String str) 
 	{
 		String newstr="";
-		String temp="";
+		String temp=str;
 		int length=str.length();
 		while(length>0)
 		{
 			int random=(int)(Math.random()*length);
-			newstr+=temp.charAt(random);
-			temp = removeChar(temp, random);
-			length = temp.length();
+			if(length>0)
+			{
+				newstr+=temp.charAt(random);
+			    temp = removeChar(temp, random);
+				length = temp.length();
+			}
 			if(length==0)
 			{
 				break;
