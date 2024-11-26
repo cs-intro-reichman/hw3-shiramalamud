@@ -51,7 +51,6 @@ public class Anagram
 						str2=changestr(str2,str2.charAt(j));
 						count++;
 			    	}
-				
 			}
 
 		}
@@ -132,23 +131,31 @@ public class Anagram
 	public static String randomAnagram(String str) 
 	{
 		String newstr="";
-		String delete="";
-		int l=str.length();
-		for(int i=0; i<l; i++)
+		String temp="";
+		int length=str.length();
+		while(length>0)
 		{
-			int random=(int)(Math.random()*str.length());
-			newstr+=str.charAt(random);
-			for(int j=0; j<str.length(); j++)
+			int random=(int)(Math.random()*length);
+			newstr+=temp.charAt(random);
+			temp = removeChar(temp, random);
+			length = temp.length();
+			if(length==0)
 			{
-				if(str.charAt(j)!=str.charAt(random))
-				{
-					delete+=str.charAt(j);
-				}
+				break;
 			}
-			str=delete;
-			delete="";
-
 		}
 		return newstr;
+	}
+
+
+	public static String removeChar(String str, int n) {
+		String newstring = "";
+		for (int i = 0; i < str.length(); i++) {
+			if (i != n) 
+			{ 
+				newstring += str.charAt(i); 
+			}
+		}
+		return newstring;
 	}
 }

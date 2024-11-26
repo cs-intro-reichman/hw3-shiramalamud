@@ -47,19 +47,19 @@ public class Algebra {
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) 
 	{
-		if(x2>0)
-		{
-			for(int i=0; i<=x2; i++)
-			{
-				x1--;
+		if (x2 > 0) {
+			for (int i = 0; i < x2; i++) {
+				x1--;  
 			}
 		}
-        else
-        {
-            for (int j=0; j>x2; j--) 
-            {
-                x1++;
-            }
+		else 
+		{
+			if (x2 < 0)
+			 {
+				for (int i = 0; i < Math.abs(x2); i++) {
+					x1++;  
+				}
+			}
 		}
 		return x1;
 	}
@@ -69,158 +69,160 @@ public class Algebra {
 	{
 	
         int sum = 0;
-        if (x1>0 && x2>0) 
-        {
-            for (int i=0; i<x2; i++) 
+        if(x1>0&&x2>0)
+		{
+			for (int i=0; i<x2; i++) 
             {
                  sum = plus(sum, x1);
             }
-        }
-
-        if (x1<0 && x2<0) 
-        {
-             for (int i=0; i>x2; i--) 
-        {
-            sum = plus(sum, x1);
-        }
-        }
-
-        if (x1<0) 
-        { 
-            for (int j=0; j>x1; j--) 
-            {
-                sum = minus(sum, x2);
-             
-            } 
-        } 
-
-        if (x1==0 || x2==0)
-        {
-          return 0;
-        
-        }
-
-        if (x2<0) 
-        {
-            for (int j=0; j>x2; j--) 
-             {
-                 sum = minus(sum, x1);
-         
-             }
-        }
-		return sum;
-
-	}
-
-	// Returns x^n (for n >= 0)
-	public static int pow(int x, int n) 
-	{
-		int sum=1;
-		for(int i=0; i<n; i++)
-		{
-			sum=times(sum, x);
 		}
+		if(x1==0||x2==0)
+		{
+			return 0;
+		}
+		if(x1==1)
+		{
+			return x2;
+		}
+		if(x1==1)
+		{
+			return x2;
+		}
+		if(x1<0&&x2>0) 
+		{
+			int newx1=Math.abs(x1);
+			for (int i=0; i<x2; i++) 
+            {
+                 sum = plus(sum, newx1);
+            }
+			sum=sum*(-1);
+		}
+		if(x1>0&&x2<0) 
+		{
+			int newx2=Math.abs(x2);
+			for (int i=0; i<newx2; i++) 
+            {
+                 sum = plus(sum, x1);
+            }
+			sum=sum*(-1);
+		}
+		if(x1<0&&x2<0) 
+		{
+			int newx2=Math.abs(x2);
+			int newx1=Math.abs(x1);
+			for (int i=0; i<newx2; i++) 
+            {
+                 sum = plus(sum, newx1);
+            }
+		}
+
 		return sum;
 	}
+
+	
+    // Returns x^n (for n >= 0)
+    public static int pow(int x, int n) 
+	{
+        int sum = 1;
+        for (int i =0; i<n; i++)
+        {
+          sum = times(sum, x);
+        }
+        return sum;
+	}
+    
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2)
 	 {
 		
+       
         int sum = 1;
         int count = 0;
-
-		if (x1==x2) 
-        {
-             return 1; 
-        } 
         if (x1==0 || x2==0) 
         {
-              return 0;
+          return 0;
         } 
-        else
-		 {
 
+        if (x1==x2) 
+        {
+          return 1; 
+        } 
+        else {
             for (int i = 1; i < x1; i++) 
             {
-             sum = times(x2, i);
-            
-            if (sum < x1) 
-            {
-              count ++;             
-            }
-            if (sum == x1) 
-            {
-              count ++;
-              return count;
-            }
-            if (sum > x1)
-            {
-                return count;
-            }
+                 sum = times(x2, i);
+                 if (sum < x1) 
+                {
+                 count ++;             
+                }
+                if (sum == x1) 
+                {
+                  count ++;
+                  return count;
+                }
+                if (sum > x1)
+                {
+                    return count;
+                }
             }
 
             for (int j = 1; j > x1; j--) 
             {
-             sum = times(x2, j);
-    
-                 if (sum > x1) 
-                 {
-                      count ++;             
-                 } 
-                 if (sum == x1) 
+                 sum = times(x2, j);
+                if (sum > x1) 
                 {
-                     count ++;
+                    count ++;             
+                } 
+                if (sum == x1) 
+                {
+                  count ++;
+                  return count;
+                }
+                if (sum < x1)
+                {
+                    count++;
                     return count;
-                 }
-                 if (sum < x1)
-                 {
-                     count++;
-                     return count;
-                 }
+                }
             }
 
 
             for (int j = 1; j > x2; j--) 
             {
-             sum = times(x1, j);
-    
-            if (sum > x2) 
-            {
-              count ++;             
-            } 
-            if (sum == x2) 
-              {
-              count ++;
-              return count;
-              }
-            if (sum < x2)
-               {
-                count++;
-                return count;
-                }
+                  sum = times(x1, j);
+                 if (sum > x2) 
+                 {
+                    count ++;             
+                 } 
+                if (sum == x2) 
+                 {
+                    count ++;
+                    return count;
+                 }
+                if (sum < x2)
+                 {
+                    count++;
+                    return count;
+                 }
             }
 
-            }  
-            return count;
-        }
+        }  
+        return count;
+		
+	
+    }
 	
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2)
 	 {
-		int count=0;
-		int n=x1;
-		while(n>=x2)
-		{
-			n=minus(n, x2);
-		}
-		while(n<x1&&n>0)
-		{
-			count++;
-			n--;
-		}
-		return count;
+		int count = 0;
+        int n = x1;
+        while (n >= x2)
+		 {
+               n = minus(n, x2);
+         }
+         return n;
 	}	
 
 	// Returns the integer part of sqrt(x) 
