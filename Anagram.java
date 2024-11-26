@@ -38,6 +38,7 @@ public class Anagram
 		int count=0;
 		str1=preProcess(str1);
 		str2=preProcess(str2);
+		String s=str2;
 		if(str1.length()!=str2.length())
 		{
 			return false;
@@ -46,9 +47,9 @@ public class Anagram
 		{
 			for(int j=0; j<str2.length(); j++)
 			{
-					if(str1.charAt(i)==str2.charAt(j))
+					if(str1.charAt(i)==s.charAt(j))
 				    {
-						str2=changestr(str2,str2.charAt(j));
+						s=changestr(s,str2.charAt(j));
 						count++;
 			    	}
 			}
