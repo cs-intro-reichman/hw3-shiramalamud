@@ -63,36 +63,47 @@ public class Algebra {
 	// Returns x1 * x2
 	public static int times(int x1, int x2) 
 	{
-		int sum=0;
-		if(x1==0||x2==0)
-		{
-			return 0;
-		}
-		if(x1>0&&x2>0)
-		{
-			for(int i = 0; i< x1; i++)
-		 {
-			for(int j=0; j < x2; j++) 
-			{
-				sum++;
-			}
-		 }
-		}
-		if(x1<0&&x2<0)
-		{
-			
-			for (int j=0; j>x2; j--) 
-			{
-				sum = plus(sum, x1);
-			}
-		}
-		if(x1<0||x2<0)
-		{
-			for(int n=0; n>x2; n--)
-			{
-				sum=minus(sum, x1);
-			}
-		}
+	
+        int sum = 0;
+        if (x1>0 && x2>0) 
+        {
+            for (int i=0; i<x2; i++) 
+            {
+                 sum = plus(sum, x1);
+            }
+        }
+
+        if (x1<0 && x2<0) 
+        {
+             for (int i=0; i>x2; i--) 
+        {
+            sum = plus(sum, x1);
+        }
+        }
+
+        if (x1<0) 
+        { 
+            for (int j=0; j>x1; j--) 
+            {
+                sum = minus(sum, x2);
+             
+            } 
+        } 
+
+        if (x1==0 || x2==0)
+        {
+          return 0;
+        
+        }
+
+        if (x2<0) 
+        {
+            for (int j=0; j>x2; j--) 
+             {
+                 sum = minus(sum, x1);
+         
+             }
+        }
 		return sum;
 
 	}
@@ -111,47 +122,86 @@ public class Algebra {
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2)
 	 {
-		int count=0,n=x1;
-		if(x1>0&&x2>0)
-		{
-			do 
-		{
-		   count++;
-		   n=minus(n, x2);
-		}
-		while(n>=x2);
+		
+        int sum = 1;
+        int count = 0;
 
-		if(x1<0)
-		{
-			do 
-		{
-		   count++;
-		   n=plus(n, x2);
-		}
-		while(n>=x2);
+        if (x1==0 || x2==0) 
+        {
+          return 0;
+        } 
 
-		if(x2<0)
-		{
-			do 
-		{
-		   count++;
-		   n=plus(n, x2);
-		}
-		while(n>=x2);
-		}
-		if(x1==x2)
-		{
-			return 1;
-		}
-		if (x2==0||x1==0)
-		{
-			return 0;
-		}
-		}
-		}
-		return count;
-	    
-	}
+        if (x1==x2) 
+        {
+          return 1; 
+        } 
+        
+        else {
+
+            for (int i = 1; i < x1; i++) 
+            {
+             sum = times(x2, i);
+            
+            if (sum < x1) 
+            {
+              count ++;             
+            }
+            if (sum == x1) 
+            {
+              count ++;
+              return count;
+            }
+            if (sum > x1)
+            {
+                return count;
+            }
+            }
+
+            for (int j = 1; j > x1; j--) 
+            {
+             sum = times(x2, j);
+    
+            if (sum > x1) 
+            {
+              count ++;             
+            } 
+            if (sum == x1) 
+            {
+              count ++;
+              return count;
+            }
+            if (sum < x1)
+            {
+                count++;
+                return count;
+            }
+            }
+
+
+            for (int j = 1; j > x2; j--) 
+            {
+             sum = times(x1, j);
+    
+            if (sum > x2) 
+            {
+              count ++;             
+            } 
+            if (sum == x2) 
+              {
+              count ++;
+              return count;
+              }
+            if (sum < x2)
+               {
+                count++;
+                return count;
+                }
+            }
+
+            }  
+            return count;
+        }
+	
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2)
