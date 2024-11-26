@@ -105,7 +105,8 @@ public class Anagram
 		String str2="";
 		for(int i=0; i<str.length(); i++)
 		{
-			if((str.charAt(i)==' ')||(((str.charAt(i)>='a'&& str.charAt(i)<='z'))||((str.charAt(i)>='A')&&(str.charAt(i)<='Z'))))
+			char ch = str.charAt(i);
+            if ((ch == ' ') || ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))) 
 			{
 				str2+=str.charAt(i);
 			}
@@ -120,7 +121,7 @@ public class Anagram
 			}
 			else
 			{
-				str2new+=ch;
+				str2new+= ch;
 			}
 
 		}
