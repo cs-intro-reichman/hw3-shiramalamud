@@ -26,26 +26,30 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) 
 	{
-		if(x2>0)
+		if(x1>0)
 		{
+			for(int i=0; i<x1; i++)
+			{
+				x2++;
+			}
 
 		}
 		else
 		{
-			for (int j=0; j>x2; j--) 
+			for (int j=0; j>x1; j--) 
 			{
-					x1--;
+					x2--;
 			}
 		}
-		return x1;
+		return x2;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) 
 	{
-		if(x1>0)
+		if(x2>0)
 		{
-			for(int i=1; i<=x2; i++)
+			for(int i=0; i<=x2; i++)
 			{
 				x1--;
 			}
@@ -126,17 +130,16 @@ public class Algebra {
         int sum = 1;
         int count = 0;
 
+		if (x1==x2) 
+        {
+             return 1; 
+        } 
         if (x1==0 || x2==0) 
         {
-          return 0;
+              return 0;
         } 
-
-        if (x1==x2) 
-        {
-          return 1; 
-        } 
-        
-        else {
+        else
+		 {
 
             for (int i = 1; i < x1; i++) 
             {
@@ -161,20 +164,20 @@ public class Algebra {
             {
              sum = times(x2, j);
     
-            if (sum > x1) 
-            {
-              count ++;             
-            } 
-            if (sum == x1) 
-            {
-              count ++;
-              return count;
-            }
-            if (sum < x1)
-            {
-                count++;
-                return count;
-            }
+                 if (sum > x1) 
+                 {
+                      count ++;             
+                 } 
+                 if (sum == x1) 
+                {
+                     count ++;
+                    return count;
+                 }
+                 if (sum < x1)
+                 {
+                     count++;
+                     return count;
+                 }
             }
 
 
