@@ -12,7 +12,7 @@ public class Anagram
 		
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
-		
+
 		// Tests the randomAnagram function.
 		System.out.println("silent and " + randomAnagram("silent") + " are anagrams.");
 		
@@ -47,7 +47,7 @@ public class Anagram
 		{
 			for(int j=0; j<str2.length(); j++)
 			{
-					if(str1.charAt(i)==s.charAt(j))
+					if(str1.charAt(i)==(s.charAt(j))||(str1.charAt(i)==' '))
 				    {
 						s=changestr(s,str2.charAt(j));
 						count++;
