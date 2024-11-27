@@ -47,7 +47,7 @@ public class Anagram
 		{
 			for(int j=0; j<str2.length(); j++)
 			{
-					if(str1.charAt(i)==(s.charAt(j))||(str1.charAt(i)==' '))
+					if(str1.charAt(i)==(s.charAt(j))||(str1.charAt(i)==' ')||(str1.charAt(i)==' '))
 				    {
 						s=changestr(s,str2.charAt(j));
 						count++;
