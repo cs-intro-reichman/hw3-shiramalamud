@@ -91,26 +91,6 @@ public class Anagram
         return count;
     }
 
-    //returns The number of times char appears in string
-	public static String changestr(String str2, char c) 
-	{
-		String n = "";
-		boolean r = false;  
-		for (int i = 0; i < str2.length(); i++) 
-		{
-			if ((str2.charAt(i) == c && !r)||(str2.charAt(i) == ' ' && !r))
-			 {
-				 n += "0";  
-				 r = true;  
-			 } 
-			 else 
-			 {
-				 n += str2.charAt(i);  
-			 }
-		}
-		return n;
-	}
-
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
